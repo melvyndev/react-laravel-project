@@ -8,7 +8,7 @@ interface SurveyListItemProps {
     }
 }
 
-const SurveyListItem: React.FC<SurveyListItemProps> = ({ survey }) => {
+const SurveyListItem<SurveyListItemProps>=>( survey : SurveyListItemProps) {
     return (
        <div className='flex flex-col rounded border border-gray-200 p-6 shadow'>
         <img src={survey.img_url} alt={survey.title} className='h-32 w-full object-cover' />

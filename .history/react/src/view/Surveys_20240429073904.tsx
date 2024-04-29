@@ -21,7 +21,7 @@ const Surveys: React.FC<SurveysProps> = () => {
         {surveys.map((survey:any) => (
           <SurveyListItem survey={survey} key={survey.id}  />
         ))}
-      </div>
+
     </PageComponent>
   );
 }

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             element: <Surveys />
         },
         {   
-            path: "surveys/create",
+            path: "survey/create",
             element: <SurveyView title={""} description={""} img_url={""}/> 
         },
     ]
