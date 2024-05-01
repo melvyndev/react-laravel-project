@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import axiosClient from "../axios.js";
+import axiosClient from '../axios.js';
 import { useStateContext } from "../contexts/ContextProvider.js";
-import { Link } from 'react-router-dom';
-import { LockClosedIcon } from "@heroicons/react/24/outline";
-
 interface SignupProps {
 }
 
@@ -14,22 +11,21 @@ const Signup :React.FC<SignupProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState({ __html: "" });
 
   const onSubmit = (ev) => {
     ev.preventDefault();
-    setError("");
-    console.log(ev)
+    setError({ __html: "" });
+
 
     axiosClient
-      .post('/signup', {
+      .post("/signup", {
         name: fullName,
         email,
         password,
         password_confirmation: passwordConfirmation,
       })
       .then(({ data }) => {
-        console.log(data)
         setCurrentUser(data.user)
         setUserToken(data.token)
       })
@@ -37,7 +33,7 @@ const Signup :React.FC<SignupProps> = () => {
         if (error.response) {
           const finalErrors = Object.values(error.response.data.errors).reduce((accum, next) => [...accum, ...next], [])
           console.log(finalErrors)
-          setError(finalErrors.join('<br>'))
+          setError({__html: finalErrors.join('<br>')})
         }
         console.error(error)
       });
@@ -58,7 +54,7 @@ const Signup :React.FC<SignupProps> = () => {
         </Link>
       </p>
 
-      {error && (<div className="bg-red-500 rounded py-2 px-3 text-white" dangerouslySetInnerHTML={{__html: error}}>
+      {error.__html && (<div className="bg-red-500 rounded py-2 px-3 text-white" dangerouslySetInnerHTML={error}>
       </div>)}
 
       <form
@@ -68,7 +64,7 @@ const Signup :React.FC<SignupProps> = () => {
         method="POST"
       >
         <input type="hidden" name="remember" defaultValue="true" />
-        <div className="rounded-md shadow-sm space-y-2">
+        <div className="-space-y-px rounded-md shadow-sm">
           <div>
             <label htmlFor="full-name" className="sr-only">
               Full Name
@@ -80,7 +76,7 @@ const Signup :React.FC<SignupProps> = () => {
               required
               value={fullName}
               onChange={ev => setFullName(ev.target.value)}
-              className="block w-full rounded-none rounded-t-md border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               placeholder="Full Name"
             />
           </div>
@@ -96,7 +92,7 @@ const Signup :React.FC<SignupProps> = () => {
               required
               value={email}
               onChange={ev => setEmail(ev.target.value)}
-              className="block w-full rounded-none border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               placeholder="Email address"
             />
           </div>
@@ -112,7 +108,7 @@ const Signup :React.FC<SignupProps> = () => {
               required
               value={password}
               onChange={ev => setPassword(ev.target.value)}
-              className="block w-full rounded-none border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               placeholder="Password"
             />
           </div>
@@ -128,7 +124,7 @@ const Signup :React.FC<SignupProps> = () => {
               required
               value={passwordConfirmation}
               onChange={ev => setPasswordConfirmation(ev.target.value)}
-              className="block w-full rounded-none rounded-b-md border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               placeholder="Password Confirmation"
             />
           </div>

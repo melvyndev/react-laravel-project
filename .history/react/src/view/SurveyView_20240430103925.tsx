@@ -23,7 +23,7 @@ const SurveyView: React.FC = () => {
     e.preventDefault();
     console.log("Submitted Data:", formData);
     // Ajoutez ici la logique pour envoyer les données au serveur
-    setFormData({ title: "", description: "", expireDate: "", active: false,img_url: "" });
+    setFormData({ title: "", description: "", expireDate: "", active: false });
   };
 
   return (

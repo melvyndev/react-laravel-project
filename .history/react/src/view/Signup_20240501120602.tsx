@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosClient from "../axios.js";
+import axiosClient from "../axios";
 import { useStateContext } from "../contexts/ContextProvider.js";
 import { Link } from 'react-router-dom';
 import { LockClosedIcon } from "@heroicons/react/24/outline";

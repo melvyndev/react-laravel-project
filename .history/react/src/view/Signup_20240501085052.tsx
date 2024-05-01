@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosClient from "../axios.js";
+import axiosClient from '../axios.js';
 import { useStateContext } from "../contexts/ContextProvider.js";
 import { Link } from 'react-router-dom';
 import { LockClosedIcon } from "@heroicons/react/24/outline";
@@ -19,17 +19,16 @@ const Signup :React.FC<SignupProps> = () => {
   const onSubmit = (ev) => {
     ev.preventDefault();
     setError("");
-    console.log(ev)
+
 
     axiosClient
-      .post('/signup', {
+      .post("/signup", {
         name: fullName,
         email,
         password,
         password_confirmation: passwordConfirmation,
       })
       .then(({ data }) => {
-        console.log(data)
         setCurrentUser(data.user)
         setUserToken(data.token)
       })
