@@ -3,3 +3,6 @@
 
 <x-backpack::menu-item title="Users" icon="la la-question" :link="backpack_url('user')" />
 <x-backpack::menu-item title="Surveys" icon="la la-question" :link="backpack_url('survey')" />
+<x-backpack::menu-item title="Survey question answers" icon="la la-question" :link="backpack_url('survey-question-answers')" />
+<x-backpack::menu-item title="Survey questions" icon="la la-question" :link="backpack_url('survey-questions')" />
+<x-backpack::menu-item title="Survey answers" icon="la la-question" :link="backpack_url('survey-answers')" />
